@@ -33,27 +33,16 @@ app.set("views", path.join(__dirname, "views"));
 // Static files
 app.use(express.static(path.join(__dirname, "public")));
 
-// Temporary routes
+app.get("/", (req, res) => {
+  res.render("landing", { title: "Landing" });
+});
+
 app.get("/login", (req, res) => {
   res.render("auth/login");
 });
 
-app.get("/patient/dashboard", (req, res) => {
-  res.render("patient/dashboard", {
-    user: { email: "patient@test.com" },
-  });
-});
-
-app.get("/doctor/dashboard", (req, res) => {
-  res.render("doctor/dashboard");
-});
-
-app.get("/receptionist/dashboard", (req, res) => {
-  res.render("receptionist/dashboard");
-});
-
-app.get("/", (req, res) => {
-  res.redirect("/login");
+app.get("/signup", (req, res) => {
+  res.render("auth/signup");
 });
 
 module.exports = app; // Export the app for use in server.js
